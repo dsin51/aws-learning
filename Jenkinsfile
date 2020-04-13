@@ -41,7 +41,8 @@ pipeline {
 		 stage('Deploy image'){
              steps{
 			     script {
-				     dockerImage.run( '-p 8888:9080 --name test'  )
+                     bat 'docker stop demo-aws'				 
+				     dockerImage.run( '-p 8888:9080 --name demo-aws'  )
 					 }
 				 }
              }
