@@ -49,6 +49,7 @@ pipeline {
                          }					 
 				     else {
 					     bat 'docker stop demo-aws'	
+						 sleep 3
 						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
 					     }
 					 }
