@@ -42,7 +42,7 @@ pipeline {
              steps{
 			     script {
 				 
-			         bat 'docker run -d -p 8888:9080 '+dockerImage
+			         bat 'docker run -d -p 8888:9080 jainparinita/aws-learning-repo:"demo-aws-$BUILD_NUMBER"'
 					 }
 				 }
              }
