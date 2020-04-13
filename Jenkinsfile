@@ -18,6 +18,12 @@ pipeline {
              steps {
                  sh 'mvn -f pom.xml clean package -DskipTests'
                  }
+			 post {
+ 	             success {
+ 	                echo 'Now Archiving...'
+ 	                archiveArtifacts artifacts: '**/target/*.jar'
+ 	                }
+ 	            }
             }
          stage('Building image') {
              steps{
