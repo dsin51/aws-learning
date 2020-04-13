@@ -25,7 +25,7 @@ pipeline {
          stage('Building image') {
              steps{
                  script {
-                         dockerImage = docker.build registry + ":demo-aws-$BUILD_NUMBER"
+                         dockerImage = docker.build registry + ":demo-aws"
                      }
                  }
              }
@@ -40,7 +40,7 @@ pipeline {
              }
 		 stage('Deploy image'){
              steps{
-			     bat 'docker run -d -p 8888:9080 demo-aws-${env.BUILD_ID}'
+			     bat 'docker run -d -p 8888:9080 jainparinita/aws-learning-repo:demo-aws'
 				 }
              }
          }
