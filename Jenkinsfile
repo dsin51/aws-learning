@@ -3,6 +3,7 @@ pipeline {
          registry = "jainparinita/aws-learning-repo"
          registryCredential = 'dockerhub'
          dockerImage = ''
+		 flag =''
   }  
   
      agent any 
@@ -41,10 +42,15 @@ pipeline {
 		 stage('Deploy image'){
              steps{
 			     script {
-				     if(bat 'docker ps | grep "demo-aws"'){
-						 bat 'docker stop demo-aws'	
+				     flag = bat 'docker ps | findstr "demo-aws"'
+				     if(flag == '' ){
+					     dockerImage.run( '-p 8888:9080 --name demo-aws'  )
+						 
                          }					 
-				     dockerImage.run( '-p 8888:9080 --name demo-aws'  )
+				     else {
+					     bat 'docker stop demo-aws'	
+						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
+					     }
 					 }
 				 }
              }
