@@ -41,7 +41,7 @@ pipeline {
 		 stage('Deploy image'){
              steps{
 			     script{
-			     dockerImage.run()
+			     dockerImage.withRun('-d=true -p 8888:9080')
                   }
 				 }
              }
