@@ -16,7 +16,7 @@ pipeline {
             }
 		 stage('Compiling Project') {
              steps {
-                 sh 'mvn clean package -DskipTests'
+                 sh 'mvn -f pom.xml clean package -DskipTests'
                  }
             }
          stage('Building image') {
