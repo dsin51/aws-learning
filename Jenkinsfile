@@ -9,21 +9,18 @@ pipeline {
      
      
     stages {
-         stage('Cloning Git') {
-             steps {
-                 git 'https://github.com/parinitajain/aws-learning.git'
-                 }
-            }
 		 stage('Compiling Project') {
              steps {
                  sh 'mvn -f pom.xml clean package -DskipTests'
                  }
-			 post {
-			     success{
-				   echo 'Now Archiving...'
-				   archiveArtifacts artifacts: '**/target/*.jar'
-				   }
-				 }  
+                 post {
+                     success{
+                         echo 'Now Archiving...'
+                         archiveArtifacts artifacts: '**/target/*.jar'
+                         
+                     }
+                     
+                 }  
             }
          stage('Building image') {
              steps{
