@@ -42,16 +42,16 @@ pipeline {
 		 stage('Deploy image'){
              steps{
 			     script {
-				     flag = bat 'docker ps | findstr "demo-aws"'
-				     if(flag == '' ){
-					     dockerImage.run( '-p 8888:9080 --name demo-aws'  )
-						 
-                         }					 
-				     else {
-					     bat 'docker stop demo-aws'	
-						 sleep 3
+				     try{
+					     bat 'docker ps | findstr "demo-aws"'
 						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
-					     }
+						 }
+					 catch(exc){
+					     bat 'docker stop demo-aws'
+						 bat 'docker container rm demo-aws'
+						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
+					 }
+				     
 					 }
 				 }
              }
