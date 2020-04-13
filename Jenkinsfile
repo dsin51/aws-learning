@@ -44,11 +44,12 @@ pipeline {
 			     script {
 				     try{
 					     bat 'docker ps | findstr "demo-aws"'
+						 bat 'docker stop demo-aws'
+						 bat 'docker container rm demo-aws'
 						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
 						 }
 					 catch(exc){
-					     bat 'docker stop demo-aws'
-						 bat 'docker container rm demo-aws'
+					    
 						 dockerImage.run( '-p 8888:9080 --name demo-aws'  )
 					 }
 				     
