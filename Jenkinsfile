@@ -40,7 +40,7 @@ pipeline {
              }
 		 stage('Deploy image'){
              steps{
-                 sh 'docker run demo-aws-$BUILD_NUMBER'
+                 bat 'docker run demo-aws-$BUILD_NUMBER'
                  }
              }
          }
