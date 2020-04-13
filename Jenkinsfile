@@ -40,7 +40,7 @@ pipeline {
              }
 		 stage('Deploy image'){
              steps{
-			     bat 'docker run -d -p 8888:9080 demo-aws-${env.BUILD_ID}
+			     bat 'docker run -d -p 8888:9080 demo-aws-${env.BUILD_ID}'
 				 }
              }
          }
