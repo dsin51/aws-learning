@@ -11,7 +11,7 @@ pipeline {
     stages {
 		 stage('Compiling Project') {
              steps {
-                 sh 'mvn -f pom.xml clean package -DskipTests'
+                 bat 'mvn -f pom.xml clean package -DskipTests'
                  }
                  post {
                      success{
