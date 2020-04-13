@@ -41,7 +41,9 @@ pipeline {
 		 stage('Deploy image'){
              steps{
 			     script {
-                     bat 'docker stop demo-aws'				 
+				     if(bat 'docker ps | grep "demo-aws"'){
+						 bat 'docker stop demo-aws'	
+                         }					 
 				     dockerImage.run( '-p 8888:9080 --name demo-aws'  )
 					 }
 				 }
